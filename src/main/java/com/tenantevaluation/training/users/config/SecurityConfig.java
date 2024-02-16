@@ -26,19 +26,6 @@ public class SecurityConfig {
                 // ### IMPORTANT: this needs to be re evaluated as all responses will contain CORS headers
                 .cors().configurationSource(corsConfigurationSource()).and()
                 .csrf().disable();
-    /*
-    http.authorizeHttpRequests(requests -> requests
-        // Specify that requests on "/public" services's pattern may be called by anyone.
-        .requestMatchers("/api/v1.0.0/languages/**").permitAll()
-        .requestMatchers("/api/v1.0.0/property/**").permitAll()
-        .requestMatchers("/api/v1.0.0/application/pending/**").permitAll()
-        .requestMatchers(AUTH_WHITELIST).permitAll()
-        .anyRequest().authenticated())
-        .httpBasic()
-        .and()
-        .csrf().disable();
-
-     */
 
         return http.build();
 
