@@ -31,10 +31,31 @@ springdoc:
     enabled: ${ENABLE_API_DOCS:true}
     swagger-ui:
       enabled: ${ENABLE_SWAGGER_UI:true}
-    path: /api/v1.0.0/application/v3/api-docs
+
 server:
   port: 9999
   servlet:
     context-path: /te-users
 
 
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: health, heapdump, info, prometheus, mappings
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState
+  info:
+    env:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}

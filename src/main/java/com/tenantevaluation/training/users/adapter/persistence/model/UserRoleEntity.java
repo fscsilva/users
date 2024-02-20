@@ -1,8 +1,11 @@
 package com.tenantevaluation.training.users.adapter.persistence.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,10 +26,24 @@ import java.math.BigInteger;
 public class UserRoleEntity {
 
     @NonNull
-    @Id
-    private BigInteger user_id;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id_id", nullable = false)
+    private UserEntity user;
+
     @NonNull
     @Id
+    @JoinColumn(name = "user_id_id", nullable = false)
+    private BigInteger user_id;
+
+    @NonNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "role_id_id", nullable = false)
+    private RoleEntity role;
+
+    @NonNull
+    @Id
+    @JoinColumn(name = "role_id_id", nullable = false)
     private BigInteger role_id;
+
 
 }
